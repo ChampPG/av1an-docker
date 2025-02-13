@@ -19,7 +19,6 @@ CRON='0 0 1 1 JAN,MAY,SEP * *'
 docker run champpg/av1an-docker:latest -v /external/path/media:/media -v /external/path/db:/db -v /external/path/tmp:/temp -v /external/path/env:/app/media.env -e PUID=1000 -e PGID=1000
 ```
 
-```
 ### Docker Compose
 ```
 services:
