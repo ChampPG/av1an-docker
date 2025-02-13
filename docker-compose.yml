@@ -1,0 +1,14 @@
+---
+services:
+  autoremove:
+    image: champpg/av1an-docker:latest
+    container_name: av1an-docker
+    restart: unless-stopped
+    volumes:
+      - /path/to/media:/media 
+      - /path/to/db:/db
+      - /path/to/temp:/temp
+      - /path/to/media.env:/app/media.env
+    environment:
+      - PUID=1000
+      - PGID=1000
