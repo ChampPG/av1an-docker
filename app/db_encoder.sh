@@ -84,12 +84,16 @@ function encode() {
             echo " [*  ] Removing file from database"
             file_escaped=$(echo "$file" | sed "s/'/''/g")
             sqlite3 "$DB_PATH/$DATABASE_NAME".db "DELETE FROM $ENCTABLE_NAME WHERE file = '$file_escaped'"
+            echo "Removing av1an tmp dir"
             find "$MEDIA_ROOT" -type d -name '.???????' -exec rm -rf {} \; # av1an failing to remove tmp dirs work around
             continue
         else
             echo " [  *] FILE CORRUPTED! NOT REPLACING"
             #echo "REVIEW $file" >> "$MEDIA_ROOT/error.log"
-            find "$MEDIA_ROOT" -type d -name '.???????' -exec rm -rf {} \; # av1an failing to remove tmp dirs work around
+            echo "Removing av1an tmp dir"
+            find "$MEDIA_ROOT" -type d -name '.???????' -exec rm -rf {} \; # av1an failing to remove tmp dirs work aroun
+            echo "Removing av1an tmp file"
+            rm "$TMP_DIR/$(basename "${file%.*}").mkv"
         fi
     done
 }
