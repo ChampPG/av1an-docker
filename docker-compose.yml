@@ -1,6 +1,6 @@
 ---
 services:
-  autoremove:
+  av1an-docker:
     image: champpg/av1an-docker:latest
     container_name: av1an-docker
     restart: unless-stopped
