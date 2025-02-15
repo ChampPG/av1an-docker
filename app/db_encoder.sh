@@ -80,7 +80,7 @@ function encode() {
             echo " [*  ] File encoded, replacing now"
             mv "$TMP_DIR/$(basename "${file%.*}").mkv" "$file"
             mv "$file" "${file%.*}".mkv &> /dev/null # Forces file to be mkv, there isn't any issue if it's already mkv
-            chmod 755 "$(basename "${file%.*}").mkv"
+            chmod 755 "${file%.*}.mkv"
             #du -hs "${file%.*}".mkv >> "$MEDIA_ROOT/encode-size.log"
             echo " [*  ] Removing file from database"
             file_escaped=$(echo "$file" | sed "s/'/''/g")
