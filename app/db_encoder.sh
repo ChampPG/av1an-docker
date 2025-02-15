@@ -80,6 +80,7 @@ function encode() {
             echo " [*  ] File encoded, replacing now"
             mv "$TMP_DIR/$(basename "${file%.*}").mkv" "$file"
             mv "$file" "${file%.*}".mkv &> /dev/null # Forces file to be mkv, there isn't any issue if it's already mkv
+            chmod 755 "$(basename "${file%.*}").mkv"
             #du -hs "${file%.*}".mkv >> "$MEDIA_ROOT/encode-size.log"
             echo " [*  ] Removing file from database"
             file_escaped=$(echo "$file" | sed "s/'/''/g")
@@ -102,7 +103,8 @@ function cleanup() {
     echo " [*  ] All files now encoded. Please check logs for any issues."
     echo " [*  ] Cleaning up script"
     cd "$MEDIA_ROOT"
-    rm -rf .*
+    rm -rf ./logs/
+    find . -type d -name '.???????' -exec rm -rf {} \;
     rm "$LOCKDIR/$ENCODER_LOCKFILE"
     exit
 }

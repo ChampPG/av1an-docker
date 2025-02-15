@@ -15,9 +15,12 @@ fi
 # Check if CRON is empty or false
 if [ -z "$CRON" ] || [ "$CRON" == "false" ]
 then
+  echo "Change user to non-root"
+  # su makepkg
   echo "INFO: CRON setting is empty or false, running av1an encoding once."
   /app/start.sh
 else
+  # su makepkg
   # Setup cron schedule if CRON is set
   echo "$CRON cd /app/ && /app/start.sh >> /app/av1an.log 2>&1" > /tmp/crontab.tmp
   crontab /tmp/crontab.tmp

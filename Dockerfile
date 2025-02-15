@@ -46,6 +46,12 @@ RUN yay -S av1an-git vapoursynth-plugin-lsmashsource-git --noconfirm --useask --
 # RUN yay -S svt-av1-git vapoursynth-plugin-lsmashsource-git --noconfirm --askyesremovemake --answerclean All --answerdiff None --answeredit All
 
 USER root
+RUN useradd --create-home runner \
+  && echo "runner ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/runner
+
+RUN chown runner:runner -R /app
+
+USER runner
 WORKDIR /app
 
 # COPY ./app/media.example.env media.env
